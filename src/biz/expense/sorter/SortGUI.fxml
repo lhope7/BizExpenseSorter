@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="518.0" text="Biz Expense Sorter" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biz.expense.sorter.SortGuiController">
+   <content>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab fx:id="sitesTab" text="Sites">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="addSiteTF" layoutX="14.0" layoutY="42.0" promptText="Enter Site Name" />
+                        <Button fx:id="addSite" layoutX="202.0" layoutY="42.0" mnemonicParsing="false" onAction="#handleButtonActionAddSite" text="Add" />
+                        <Button fx:id="addToBtn" layoutX="241.0" layoutY="119.0" mnemonicParsing="false" onAction="#handleButtonActionAddToBtn" text="&gt;&gt;" />
+                        <Button fx:id="rmFromBt" layoutX="245.0" layoutY="219.0" mnemonicParsing="false" onAction="#handleButtonActionRmFromBtn" text="&lt;&lt;" />
+                        <Button fx:id="rmSiteBtn" layoutX="85.0" layoutY="297.0" mnemonicParsing="false" onAction="#handleButtonActionRmSiteBtn" text="Remove" />
+                        <ListView fx:id="siteToAdd" layoutX="15.0" layoutY="93.0" prefHeight="200.0" prefWidth="205.0" />
+                        <ListView fx:id="siteList" layoutX="302.0" layoutY="93.0" prefHeight="200.0" prefWidth="200.0" />
+                        <Label fx:id="outputLabel" layoutX="198.0" layoutY="303.0" text="Diagnostic Text Here" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="sortTab" text="Sort">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="47.0" layoutY="23.0" text="Choose Report to Sort" />
+                        <Button fx:id="browseBtn" layoutX="319.0" layoutY="53.0" mnemonicParsing="false" onAction="#handleButtonActionBrowse" text="Browse" />
+                        <Label layoutX="47.0" layoutY="108.0" text="Choose Save Location" />
+                        <Button fx:id="saveBtn" layoutX="319.0" layoutY="142.0" mnemonicParsing="false" onAction="#handleButtonActionSave" text="Browse" />
+                        <TextField fx:id="sourceTF" layoutX="47.0" layoutY="53.0" prefHeight="27.0" prefWidth="265.0" />
+                        <TextField fx:id="destinationTF" layoutX="47.0" layoutY="142.0" prefHeight="27.0" prefWidth="266.0" />
+                        <Button fx:id="sortAndSave" layoutX="206.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleButtonActionSortAndSave" text="Sort and Save" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </content>
+</TitledPane>
