@@ -123,9 +123,11 @@ public class SortGuiController implements Initializable {
 
     @FXML
     private void handleButtonActionSortAndSave(ActionEvent event) {
-        SortCSV s = new SortCSV();
+        //SortCSV s = new SortCSV();
+        SortAndSave sas = new SortAndSave();
 
-        s.sortAndSave(getSiteList(), source, destination);
+       // s.sortAndSave(getSiteList(), source, destination);
+        sas.sas(getSiteList(), source, destination);
     }
 
     @FXML
@@ -220,7 +222,7 @@ public class SortGuiController implements Initializable {
             ResultSet rs = stat.executeQuery("select * from Location;");
             while (rs.next()) {
                 siteToAdd.getItems().add(rs.getString("name"));
-                System.out.println("name = " + rs.getString("name"));
+                //System.out.println("name = " + rs.getString("name"));
             }
             rs.close();
             conn.close();
@@ -236,7 +238,7 @@ public class SortGuiController implements Initializable {
         for (int i = 0; i < siteList.getItems().size(); i++) {
             listOfSites.add(siteList.getItems().get(i));
         }
-        System.out.println(listOfSites);
+        //System.out.println(listOfSites);
         return listOfSites;
     }
 
