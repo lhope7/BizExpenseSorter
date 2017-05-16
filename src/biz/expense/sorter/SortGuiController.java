@@ -175,11 +175,11 @@ public class SortGuiController implements Initializable {
     public void storeSite(String site) throws Exception {
 
         Class.forName("org.sqlite.JDBC");
-        Connection conn = DriverManager.getConnection("jdbc:sqlite:test.db");
+        Connection conn = DriverManager.getConnection("jdbc:sqlite:/Users/Shared/test.db");
         Statement stat = conn.createStatement();
         stat.executeUpdate("create table if not exists Location (name);");
         PreparedStatement prep = conn.prepareStatement(
-                "insert into Location values (?,?);");
+                "insert into Location values (?);");
 
         prep.setString(1, site);
         prep.addBatch();
@@ -192,7 +192,7 @@ public class SortGuiController implements Initializable {
 
     public void removeSite(String site) throws Exception {
         Class.forName("org.sqlite.JDBC");
-        Connection conn = DriverManager.getConnection("jdbc:sqlite:test.db");
+        Connection conn = DriverManager.getConnection("jdbc:sqlite:/Users/Shared/test.db");
         Statement stat = conn.createStatement();
         PreparedStatement prep = conn.prepareStatement(
                 "delete from Location where name = ?;");
@@ -209,17 +209,26 @@ public class SortGuiController implements Initializable {
     // This bit works in the IDE, but not from the .jar on the desktop. I think this is 
     // where the problem is.
     public void populateSites() throws Exception {
-        Class.forName("org.sqlite.JDBC");
-        // I assume the file path here needs some finesse
-        Connection conn = DriverManager.getConnection("jdbc:sqlite:test.db");
-        Statement stat = conn.createStatement();
-        ResultSet rs = stat.executeQuery("select * from Location;");
-        while (rs.next()) {
-            siteToAdd.getItems().add(rs.getString("name"));
-            System.out.println("name = " + rs.getString("name"));
+        File file = new File("/Users/Shared/test.db");
+
+        if (file.exists()) {
+
+            Class.forName("org.sqlite.JDBC");
+            // I assume the file path here needs some finesse
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:/Users/Shared/test.db");
+            Statement stat = conn.createStatement();
+            ResultSet rs = stat.executeQuery("select * from Location;");
+            while (rs.next()) {
+                siteToAdd.getItems().add(rs.getString("name"));
+                System.out.println("name = " + rs.getString("name"));
+            }
+            rs.close();
+            conn.close();
         }
-        rs.close();
-        conn.close();
+        else{
+            outputLabel.setText("file doesn't exist");
+        }
+        
     }
 
     @FXML
